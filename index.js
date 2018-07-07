@@ -131,21 +131,16 @@ quora.answer = userAnswer => {
 		return Promise.reject(new Error('answer link required'));
 	}
 
-	const url = `https://www.quora.com/${userAnswer}`;
+	const url = `https://www.quora.com/${userAnswer}/log`;
 
 	return got(url).then(res => {
 		const $ = cheerio.load(res.body);
 		return {
-			answer0: $('.ExpandedAnswer').eq(0).text().split('View Upvotes')[0] || null,
-			writer0: $('.NewGridQuestionPage .AnswerBase .ContentHeader .feed_item_answer_user .user, .NewGridQuestionPage .AnswerBase .ContentHeader .feed_item_answer_user .anon_user').eq(0).text() || null,
-			answer1: $('.ExpandedAnswer').eq(1).text().split('View Upvotes')[0] || null,
-			writer1: $('.NewGridQuestionPage .AnswerBase .ContentHeader .feed_item_answer_user .user, .NewGridQuestionPage .AnswerBase .ContentHeader .feed_item_answer_user .anon_user').eq(1).text() || null,
-			answer2: $('.ExpandedAnswer').eq(2).text().split('View Upvotes')[0] || null,
-			writer2: $('.NewGridQuestionPage .AnswerBase .ContentHeader .feed_item_answer_user .user, .NewGridQuestionPage .AnswerBase .ContentHeader .feed_item_answer_user .anon_user').eq(2).text() || null,
-			answer3: $('.ExpandedAnswer').eq(3).text().split('View Upvotes')[0] || null,
-			writer3: $('.NewGridQuestionPage .AnswerBase .ContentHeader .feed_item_answer_user .user, .NewGridQuestionPage .AnswerBase .ContentHeader .feed_item_answer_user .anon_user').eq(3).text() || null,
-			answer4: $('.ExpandedAnswer').eq(4).text().split('View Upvotes')[0] || null,
-			writer4: $('.NewGridQuestionPage .AnswerBase .ContentHeader .feed_item_answer_user .user, .NewGridQuestionPage .AnswerBase .ContentHeader .feed_item_answer_user .anon_user').eq(4).text() || null
+			answer0: $('.pagedlist_item').eq(0).find('.rendered_qtext').text() || null,
+			answer1: $('.pagedlist_item').eq(1).find('.rendered_qtext').text() || null,
+			answer2: $('.pagedlist_item').eq(2).find('.rendered_qtext').text() || null,
+			answer3: $('.pagedlist_item').eq(3).find('.rendered_qtext').text() || null,
+			answer4: $('.pagedlist_item').eq(4).find('.rendered_qtext').text() || null
 		};
 	}).catch(err => {
 		if (err) {

@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codedotjs/quora-api.git"
+    "url": "git+https://github.com/wei3hua2/quora-api.git"
   },
   "author": "Rishi Giri <rushforlinux@gmail.com> (rishigiri.com)",
   "engines": {
